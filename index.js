@@ -17,6 +17,7 @@ mongoose
   })
   .then(() => {
     // Run your code here, after you have insured that the connection was made
+    
     const newRecipe = {
       title: 'Tiramisu', 
       level: 'Amateur Chef', 
@@ -25,8 +26,9 @@ mongoose
       dishType: 'dessert', 
       duration: 30,
     }
-    Recipe.create(newRecipe)
-    console.log('recipe added')
+    Recipe.create(newRecipe) 
+    Recipe.insertMany(data)
+    
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
