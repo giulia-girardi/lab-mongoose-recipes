@@ -26,10 +26,20 @@ mongoose
       dishType: 'dessert', 
       duration: 30,
     }
-    Recipe.create(newRecipe) 
-    Recipe.insertMany(data)
-    Recipe.findOneAndUpdate({title: 'Rigatoni alla Genoves'}, {duration: 100})
-    .then(console.log('Updated successfully'))
+    return Recipe.create(newRecipe)
+  })
+
+  .then(() => {
+    return Recipe.insertMany(data)
+  })
+  .then(() => {
+    return Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration: 100}, {new:true})
+  })
+  .then(() => {
+    return Recipe.deleteOne({title: 'Carrot Cake'})
+  })
+  .then(()=> {
+    mongoose.disconnect()
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
